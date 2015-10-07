@@ -11,6 +11,7 @@
   "dependencies": {
     "express": "^4.13.3",
     "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.0.2",
     "gulp-less": "^3.0.3",
     "morgan": "^1.6.1"
   }
