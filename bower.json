@@ -1,0 +1,9 @@
+{
+  "name": "new_site",
+  "version": "0.0.0",
+  "authors": [
+    "Colby Somerville <colby.somerville@gmail.com>"
+  ],
+  "main": "app.js",
+  "license": "MIT"
+}
