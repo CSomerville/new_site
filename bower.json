@@ -5,5 +5,8 @@
     "Colby Somerville <colby.somerville@gmail.com>"
   ],
   "main": "app.js",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "normalize.css": "~3.0.3"
+  }
 }

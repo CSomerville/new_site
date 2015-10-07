@@ -1,17 +1,107 @@
+@import (less) '../bower_components/normalize.css/normalize.css';
 @import (less) '../devicons-master/css/devicons.css';
 
-.devicons {
-  font-size: 120px;
+@import url(https://fonts.googleapis.com/css?family=EB+Garamond);
+
+@light-gray: lighten(#000000, 95%);
+@darkish-gray: lighten(#000000, 20%);
+@super-dark-gray: lighten(#000000, 5%);
+@pink: #F14AE7;
+
+body {
+  font-family: 'EB Garamond'
+}
+
+html, body, .backdrop, main {
+  height: 100%;
+}
+
+.backdrop {
+  background-color: @light-gray;
+  overflow: hidden;
+
+  .backdrop-wrapper {
+    width: 100%;
+    position: relative;
+
+    .devicons {
+      font-size: 120px;
+      color: @super-dark-gray;
+      position: absolute;
+      transition: all 10s ease-in;
+    }
+
+    .heavenly {
+      top: -100px;
+      left: 300px;
+    }
+
+    .earthly {
+      top: 1000px;
+      left: 200px;
+    }
+  }
+}
+
+main {
   position: absolute;
-  transition: all 10s ease-in;
+  width: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .shown::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    filter: blur(10px);
+  }
+
+  .shown {
+    position: relative;
+    top: -1%;
+    text-align: center;
+    max-width: 80%;
+    color: white;
+    background-color: rgba(red(@darkish-gray), green(@darkish-gray), blue(@darkish-gray), 0.8);  
+    padding: 30px 100px;
+    h1 {
+      font-size: 56px;
+      letter-spacing: 7px;
+      line-height: 1;
+    }
+    hr {
+      width: 80%;
+      border: 0;
+      height: 1px;
+      margin-top: 50px;
+      margin-bottom: 35px;
+      background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.75),rgba(255, 255, 255, 0.75),rgba(255, 255, 255, 0.75), rgba(0, 0, 0, 0));
+    }
+    .boxies {
+      position: absolute;
+      top: 50%;
+      left: 95%;
+      width: 5%;
+      height: 50%;
+      .boxlet {
+        width: 20%;
+        height: 5%;
+        margin-bottom: 50%;
+        border-width: 1px;
+        border-style: solid;
+        border-color: white;
+        border-radius: 50px;
+      }
+      .on {
+        background-color: @pink;
+      }
+    }
+  }
 }
 
-.heavenly {
-  top: -100px;
-  left: 300px;
-}
 
-.earthly {
-  top: 700px;
-  left: 200px;
-}
+
+
