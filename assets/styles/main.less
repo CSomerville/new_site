@@ -16,7 +16,6 @@
     font-size: 120px;
     color: @super-dark-gray;
     position: absolute;
-    transition: all 10s ease-in;
   }
 
   .heavenly {
@@ -27,6 +26,7 @@
   .earthly {
     top: 1000px;
     left: 200px;
+    transition: all 10s ease-in;
   }
 }
 
@@ -53,6 +53,7 @@
 }
 
 .all-pages {
+  cursor: pointer;
   position: relative;
   top: -1%;
   text-align: center;
@@ -60,7 +61,8 @@
   color: white;
   background-color: rgba(red(@darkish-gray), green(@darkish-gray), blue(@darkish-gray), 0.8);  
   padding: 30px 100px;
-  z-index: 2;  
+  z-index: 2;
+  transition: filter 1s linear;  
 }
 
 .horizontal {
@@ -105,6 +107,14 @@ main {
   align-items: center;
   justify-content: center;
 
+  .blurred {
+    filter: blur(15px);
+  }
+
+  .hidden {
+    display: none;
+  }
+
   .blurred-speech {
     position: absolute;
     overflow: hidden;
@@ -113,10 +123,6 @@ main {
     background-color: @light-gray;
 
     .devicon-styling;
-  }
-
-  .hidden {
-    display: none;
   }
 
   .front-page {
@@ -178,9 +184,17 @@ main {
     hr {
       .horizontal;
     }
-    .fa {
-      font-size: 86px;
-      margin: 0 30px;
+    a {
+      text-decoration: none;
+      color: white;
+      transition: all 1s ease-in-out;  
+      .fa {
+        font-size: 86px;
+        margin: 0 30px;
+      }
+    }
+    a:hover {
+      color: @super-dark-gray;
     }
   }
 }

@@ -19,8 +19,8 @@ function makeMeteors(){
   $('.backdrop-wrapper').prepend($el);
   $('.blurred-speech').prepend($copy);
   window.setTimeout(function(){
-    $el.addClass('earthly').css('left', (pos - 200) + 'px');
-    $copy.addClass('earthly').css({'left': (pos - copyOffsetL - 200) + 'px', 'top': 1000 - copyOffsetT });
+    $el.addClass('earthly').css('left', (pos - 200) + 'px').data({dest: (pos - 200) + 'px'});
+    $copy.addClass('earthly').css({'left': (pos - copyOffsetL - 200) + 'px', 'top': 1000 - copyOffsetT }).data({dest: (pos - copyOffsetL - 200) + 'px'});
   }, 200);
 }
 
@@ -39,8 +39,77 @@ function setFrostyWindow() {
 
   $('.blurred-speech').css({top: (parseInt(p.top)) + 'px', left: (parseInt(p.left)) + 'px', width: (w), height: (h) });
 
+  leftDifference = p.left - copyOffsetL;
+
   copyOffsetL = p.left;
-  copyOffsetT = p.top;  
+  copyOffsetT = p.top;
+
+  $('.backdrop-wrapper').find('.devicons').each(function(){
+    $(this).css({top: '', left: $(this).data('dest')});
+    $(this).addClass('earthly');
+  });
+
+  $('.blurred-speech').find('.devicons').each(function(){
+    $(this).css({top: '', left: parseInt($(this).data('dest')) - leftDifference + 'px' });
+    $(this).addClass('earthly');    
+  })
+
+  // $('.blurred-speech').find('.devicons').each(function(){
+  //   var offset = $(this).offset();
+  //   $(this).offset({top: offset.top, left: offset.left + leftDifference});
+  // });
+}
+
+function stopTime() {
+  var p = $('.blurred').first().position();
+
+  leftDifference = p.left - copyOffsetL;
+
+  $('.backdrop-wrapper').find('.devicons').each(function(){
+    var offset = $(this).offset();
+    $(this).removeClass('earthly');
+    $(this).offset({top: offset.top, left: offset.left })
+  });
+
+  $('.blurred-speech').find('.devicons').each(function(){
+    var offset = $(this).offset();
+    $(this).removeClass('earthly');
+    $(this).offset({top: offset.top, left: offset.left - leftDifference});
+  });
+}
+
+function flipPages() {
+  var $allSections = $('section');
+  var $shown = $('.shown');
+  var i;
+
+  $allSections.each(function(ind){
+    self = $(this)
+    if (this === $shown[0]) {
+      i = ind;
+      self.removeClass('shown').addClass('blurred');
+      return false;
+    }
+  });
+
+  window.setTimeout(function(){
+    self.removeClass('blurred').addClass('hidden');
+    $($allSections[(i + 1) % 4]).removeClass('hidden').addClass('blurred');
+    stopTime();
+    window.setTimeout(function(){
+      $($allSections[(i + 1) % 4]).removeClass('blurred').addClass('shown');
+      setFrostyWindow();
+    }, 100)
+  }, 1100);
+}
+
+function stopBubbling(e) {
+  e.stopPropagation();
+}
+
+function addListeners() {
+  $('section').on('click', flipPages);
+  $('a').on('click', stopBubbling);
 }
 
 window.setInterval(function(){
@@ -51,6 +120,7 @@ window.setInterval(function(){
 $(document).ready(function(){
   window.setTimeout(function(){
     setFrostyWindow();
+    addListeners();
   }, 500)  
 });
 
