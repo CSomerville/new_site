@@ -131,13 +131,16 @@ main {
 
   .front-page {
     .all-pages;
+    @media (max-width: 800px) {
+      padding: 30px 20px;
+      h1{        
+        letter-spacing: 3px;
+      }
+    }
     h1 {
       font-size: 56px;
       letter-spacing: 7px;
       line-height: 1;
-      @media (max-width: 800px) {
-        letter-spacing: 3px;
-      }
     }
     hr {
       .horizontal
