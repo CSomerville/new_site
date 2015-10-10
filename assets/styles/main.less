@@ -62,7 +62,11 @@
   background-color: rgba(red(@darkish-gray), green(@darkish-gray), blue(@darkish-gray), 0.8);  
   padding: 30px 100px;
   z-index: 2;
-  transition: filter 1s linear;  
+  transition: filter 1s linear;
+  @media (max-width: 800px) {
+    max-width: 100%;
+    padding: 20px 50px;
+  }
 }
 
 .horizontal {
