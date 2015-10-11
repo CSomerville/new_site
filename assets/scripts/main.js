@@ -38,7 +38,7 @@ function makeMeteors(){
   var $el = $(str).addClass('heavenly').css('left', pos + 'px');
 
   // the element has been created ... now for a copy (to be blurred).
-  var cpOffset = $('.shown').offset();
+  var cpOffset = $('.blurred-speech').offset();
   var $copy = $el.clone().css({
                             left: pos - cpOffset.left + 'px',
                             top: -100 - cpOffset.top + 'px'
@@ -104,6 +104,8 @@ function transition() {
 }
 
 function initiateTrans() {
+
+  $('.section').off('click');
   
   var $sections = $('section');
   var $shown = $('.shown');
@@ -164,6 +166,8 @@ function disposeTrans($sections, lDiff, tDiff, prevInd) {
     });
     $(this).addClass('earthly');    
   });
+
+  $('section').on('click', transition);
 }
 
 
